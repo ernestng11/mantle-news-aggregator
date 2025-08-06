@@ -156,8 +156,8 @@ class ChannelMonitor:
                 result_text = str(llm_result)
             
             if result_text and not result_text.startswith("LLM processing failed"):
-                llm_text = f"🤖 **LLM Analysis:**\n\n{result_text}"
-                await self.bot_forwarder.forward_message("LLM", llm_text)
+                # llm_text = f"🤖 **LLM Analysis:**\n\n{result_text}"
+                await self.bot_forwarder.forward_message("LLM", result_text)
                 logger.info(f"✅ LLM analysis sent for {len(batch_messages)} messages")
             else:
                 logger.warning(f"⚠️ LLM processing failed or returned empty result")

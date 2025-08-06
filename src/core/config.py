@@ -57,7 +57,7 @@ class Config:
     # Background task intervals
     POLLING_INTERVAL = 5
     HEARTBEAT_INTERVAL = 840  # 14 minutes
-    BATCH_INTERVAL = 2*60  # 5 minutes in seconds
+    BATCH_INTERVAL = 5*60  # 5 minutes in seconds
     
     # File paths
     TRADE_LOG_FILE = "output.jsonl"

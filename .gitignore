@@ -1,4 +1,8 @@
 .env
-**/_pycache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
 *.session
 *.session-journal

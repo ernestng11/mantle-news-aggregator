@@ -36,17 +36,17 @@ class BotForwarder:
         # Only escape characters that actually cause Markdown parsing issues
         # These are the main culprits for "can't parse entities" errors
         # Note: We don't escape hyphens (-) or dots (.) as they're common in URLs
-        problematic_chars = ['_', '*', '[', ']', '(', ')', '~', '`', '>', '#', '+', '=', '|', '{', '}', '!']
-        sanitized = text
+        # problematic_chars = ['_', '*', '[', ']', '(', ')', '~', '`', '>', '#', '+', '=', '|', '{', '}', '!']
+        # sanitized = text
         
-        for char in problematic_chars:
-            sanitized = sanitized.replace(char, f'\\{char}')
+        # for char in problematic_chars:
+        #     sanitized = sanitized.replace(char, f'\\{char}')
         
-        # Handle common problematic patterns more carefully
-        sanitized = sanitized.replace('**', '\\*\\*')  # Escape double asterisks
-        sanitized = sanitized.replace('__', '\\_\\_')  # Escape double underscores
+        # # Handle common problematic patterns more carefully
+        # sanitized = sanitized.replace('**', '\\*\\*')  # Escape double asterisks
+        # sanitized = sanitized.replace('__', '\\_\\_')  # Escape double underscores
         
-        return sanitized
+        return text
     
     async def _send_to_chat(self, target_id: str, channel_handle: str, message_text: str) -> bool:
         """Send message to a specific chat/channel"""
@@ -55,13 +55,13 @@ class BotForwarder:
             sanitized_message = self._sanitize_text(message_text)
             
             # Format the message with channel handle
-            formatted_message = f"📢 **@{channel_handle}**\n\n{sanitized_message}"
+            # formatted_message = f"📢 **@{channel_handle}**\n\n{sanitized_message}"
             
             # Prepare the payload
             payload = {
                 "chat_id": target_id,
-                "text": formatted_message,
-                "parse_mode": "Markdown"
+                "text": sanitized_message,
+                "parse_mode": "HTML"
             }
             
             # Send via Telegram Bot API

@@ -19,6 +19,14 @@ def convert_markdown_to_html(text: str) -> str:
     text = re.sub(r'\*\*(.*?)\*\*', r'<b>\1</b>', text)
     return text
 
+def clean_telegram_formatting(text: str) -> str:
+    """Clean up formatting for Telegram compatibility"""
+    # First, remove ALL backslashes
+    text = re.sub(r'\\', '', text)
+    # Then convert any remaining Markdown bold to HTML
+    text = re.sub(r'\*\*(.*?)\*\*', r'<b>\1</b>', text)
+    return text
+
 async def process_batch_with_llm(batch_messages: List[Dict[str, Any]], prompt: str = None) -> str:
     """
     Process batched messages with LLM
@@ -95,9 +103,11 @@ Use relevant hashtags for each category and point. Focus on actionable insights 
         if hasattr(result, 'result'):
             result.result = fix_telegram_hashtags(result.result)
             result.result = convert_markdown_to_html(result.result)
+            result.result = clean_telegram_formatting(result.result)
         elif isinstance(result, str):
             result = fix_telegram_hashtags(result)
             result = convert_markdown_to_html(result)
+            result = clean_telegram_formatting(result)
         
         logger.info(f"✅ LLM processed {len(batch_messages)} messages")
         return result
