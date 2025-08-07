@@ -1,0 +1,41 @@
+{
+  "name": "Telegram News Funnel",
+  "description": "A Telegram bot that monitors channels and forwards messages with LLM analysis",
+  "repository": "https://github.com/yourusername/telegram-news-funnel",
+  "keywords": ["python", "telegram", "bot", "news", "llm"],
+  "env": {
+    "TELEGRAM_API_ID": {
+      "description": "Your Telegram API ID",
+      "required": true
+    },
+    "TELEGRAM_API_HASH": {
+      "description": "Your Telegram API Hash",
+      "required": true
+    },
+    "TELEGRAM_SESSION_NAME": {
+      "description": "Telegram session name (default: anon)",
+      "value": "anon"
+    },
+    "BOT_TOKEN": {
+      "description": "Your Telegram Bot Token",
+      "required": true
+    },
+    "BOT_CHAT_ID": {
+      "description": "Your personal chat ID for bot messages",
+      "required": true
+    },
+    "BOT_CHANNEL_ID": {
+      "description": "Channel ID where bot is admin (optional)",
+      "required": false
+    },
+    "OPENAI_API_KEY": {
+      "description": "OpenAI API Key for LLM processing",
+      "required": true
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-python"
+    }
+  ]
+} 

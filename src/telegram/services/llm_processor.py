@@ -79,7 +79,7 @@ async def process_batch_with_llm(batch_messages: List[Dict[str, Any]], prompt: s
 
 [Continue for each relevant category...]
 
-Use relevant hashtags for each category and point. Focus on actionable insights and market implications.
+Use relevant hashtags for each category and point. Attach relevant web links to the news points. Focus on actionable insights and market implications.
 
 {combined_text}"""
         
